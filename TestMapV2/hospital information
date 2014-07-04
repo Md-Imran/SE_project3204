@@ -1,0 +1,9 @@
+mMyMarkersArray.add(new MyMarker("Islami Bank Hospital,khulna"+"\nAddress:"+"\n Santidham mor", "images", Double.parseDouble("22.8118866"), Double.parseDouble("89.561410497")));
+mMyMarkersArray.add(new MyMarker("Prince Hospital,khulna"+"\nAddress:"+"\n Royal mor", "images", Double.parseDouble("22.8103937"), Double.parseDouble("89.561498906")));
+mMyMarkersArray.add(new MyMarker("Khulna Sadar Hospital,khulna"+"\nAddress:"+"\n Jelkhana gath", "images", Double.parseDouble("22.8171342"), Double.parseDouble("89.57019209")));
+mMyMarkersArray.add(new MyMarker("Khulna Medical college Hospital,khulna"+"\nAddress:"+"\n Choto boyra", "images", Double.parseDouble("22.8022302"), Double.parseDouble("89.535194607")));
+mMyMarkersArray.add(new MyMarker("Abu naser Hospital,khulna"+"\nAddress:"+"\n Goalkhali,khulna", "images", Double.parseDouble("22.8526844"), Double.parseDouble("89.529415503")));
+mMyMarkersArray.add(new MyMarker("Khulna Shishu Hospital,khulna"+"\nAddress:"+"\n khulna Sador,khulna", "images", Double.parseDouble("22.8152728"), Double.parseDouble("89.566932597")));
+mMyMarkersArray.add(new MyMarker("Keyor Home General Hospital,khulna"+"\nAddress:"+"\n Moylapota mor KDA Avenue,khulna", "images", Double.parseDouble("22.817161400"), Double.parseDouble("89.553626800")));
+mMyMarkersArray.add(new MyMarker("Ad-Din Akiz Medical college hospital ,khulna"+"\nAddress:"+"\n Boykali,khulna", "images", Double.parseDouble("22.841354"), Double.parseDouble("89.53870605")));
+mMyMarkersArray.add(new MyMarker("Sargical Hospital,khulna"+"\nAddress:"+"\n Sonadanga,khulna", "images", Double.parseDouble("22.8175609"), Double.parseDouble("89.545535406")));
