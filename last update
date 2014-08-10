@@ -1,0 +1,238 @@
+package com.example.testmapv2;
+
+import android.app.Activity;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class MainActivity extends Activity implements LocationListener
+{
+    private GoogleMap mMap;
+    private ArrayList<MyMarker> mMyMarkersArray = new ArrayList<MyMarker>();
+    private HashMap<Marker, MyMarker> mMarkersHashMap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize the HashMap for Markers and MyMarker object
+        mMarkersHashMap = new HashMap<Marker, MyMarker>();
+
+      //  mMyMarkersArray.add(new MyMarker("DR.Arshadul Alam"+"\nAddress:"+"\nKDA Avenue,Khulna Division, Bangladesh"+"\n", "images", Double.parseDouble("22.817161400"), Double.parseDouble("89.553626800")));
+       // mMyMarkersArray.add(new MyMarker("DR.Amzal Ali"+"\nAddress:"+"\n52 Shantidhammore Khan Jahan Ali Road Khulna, Bangladesh", "images", Double.parseDouble("22.8166667"), Double.parseDouble("89.5499995")));
+     //   mMyMarkersArray.add(new MyMarker("DR.SK Raj"+"\nAddress:"+"\n22 Nirala,Khulna", "images", Double.parseDouble("51.8917773"), Double.parseDouble("-86.0922954")));
+       // mMyMarkersArray.add(new MyMarker("DR.Mizanur Alam"+"\nAddress:"+"\n32 Sonadanga,Khulna", "images", Double.parseDouble("52.4435047"), Double.parseDouble("-3.4199249")));
+       // mMyMarkersArray.add(new MyMarker("DR.Malik Shek"+"\nAddress:"+"\n67 Power house,Khulna", "images", Double.parseDouble("41.8728262"), Double.parseDouble("-0.2375882")));
+       // mMyMarkersArray.add(new MyMarker("DR.Manish Roy"+"\nAddress:"+"\n45 Santi Dham,Khulna", "images", Double.parseDouble("40.8316649"), Double.parseDouble("-4.936009")));
+        //mMyMarkersArray.add(new MyMarker("DR.Latil"+"\nAddress:"+"\n78 Hazi mohasin road,Khulna", "images", Double.parseDouble("51.1642292"), Double.parseDouble("10.4541194")));
+        //mMyMarkersArray.add(new MyMarker("DR.Haradhon Nag"+"\nAddress:"+"\n124 Ahosan Ahmed road,Khulna", "images", Double.parseDouble("-13.1294607"), Double.parseDouble("-19.9602353")));
+      mMyMarkersArray.add(new MyMarker("Islami Bank Hospital,khulna"+"\nAddress:"+"\n Santidham mor", "images", Double.parseDouble("22.8118866"), Double.parseDouble("89.561410497")));
+      mMyMarkersArray.add(new MyMarker("Prince Hospital,khulna"+"\nAddress:"+"\n Royal mor", "images", Double.parseDouble("22.8103937"), Double.parseDouble("89.561498906")));
+      mMyMarkersArray.add(new MyMarker("Khulna Sadar Hospital,khulna"+"\nAddress:"+"\n Jelkhana gath", "images", Double.parseDouble("22.8171342"), Double.parseDouble("89.57019209")));
+      mMyMarkersArray.add(new MyMarker("Khulna Medical college Hospital,khulna"+"\nAddress:"+"\n Choto boyra", "images", Double.parseDouble("22.8022302"), Double.parseDouble("89.535194607")));
+      mMyMarkersArray.add(new MyMarker("Abu Naser Hospital,khulna"+"\nAddress:"+"\n Goalkhali,khulna", "images", Double.parseDouble("22.8526844"), Double.parseDouble("89.529415503")));
+      mMyMarkersArray.add(new MyMarker("Khulna Shishu Hospital,khulna"+"\nAddress:"+"\n khulna Sador,khulna", "images", Double.parseDouble("22.8152728"), Double.parseDouble("89.566932597")));
+      mMyMarkersArray.add(new MyMarker("Keyor Home General Hospital,khulna"+"\nAddress:"+"\n Moylapota mor KDA Avenue,khulna", "images", Double.parseDouble("22.817161400"), Double.parseDouble("89.553626800")));
+      mMyMarkersArray.add(new MyMarker("Ad-Din Akiz Medical college hospital ,khulna"+"\nAddress:"+"\n Boykali,khulna", "images", Double.parseDouble("22.841354"), Double.parseDouble("89.53870605")));
+      mMyMarkersArray.add(new MyMarker("Sargical Hospital,khulna"+"\nAddress:"+"\n Sonadanga,khulna", "images", Double.parseDouble("22.8175609"), Double.parseDouble("89.545535406")));
+        setUpMap();
+
+        plotMarkers(mMyMarkersArray);
+    }
+
+    private void plotMarkers(ArrayList<MyMarker> markers)
+    {
+        if(markers.size() > 0)
+        {
+            for (MyMarker myMarker : markers)
+            {
+
+                // Create user marker with custom icon and other options
+                MarkerOptions markerOption = new MarkerOptions().position(new LatLng(myMarker.getmLatitude(), myMarker.getmLongitude()));
+                markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.currentlocation_icon));
+               // markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.dr_location));
+
+                Marker currentMarker = mMap.addMarker(markerOption);
+                mMarkersHashMap.put(currentMarker, myMarker);
+
+                mMap.setInfoWindowAdapter(new MarkerInfoWindowAdapter());
+            }
+        }
+    }
+
+    private int manageMarkerIcon(String markerIcon)
+    {
+        if (markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else if(markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else if(markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else if(markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else if(markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else if(markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else if(markerIcon.equals("images"))
+            return R.drawable.hospital_icon;
+        else
+            return R.drawable.hospital_icon;
+    }
+
+
+    private void setUpMap()
+    {
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null)
+        {
+            // Try to obtain the map from the SupportMapFragment.
+            mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+
+         // Enabling MyLocation Layer of Google Map
+         			mMap.setMyLocationEnabled(true);	
+         		// Enabling MyLocation Layer of Google Map
+        			mMap.setMyLocationEnabled(true);				
+        					
+        			
+        			 // Getting LocationManager object from System Service LOCATION_SERVICE
+        	        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        	
+        	        // Creating a criteria object to retrieve provider
+        	        Criteria criteria = new Criteria();
+        	
+        	        // Getting the name of the best provider
+        	        String provider = locationManager.getBestProvider(criteria, true);
+        	
+        	        // Getting Current Location
+        	        Location location = locationManager.getLastKnownLocation(provider);
+        	
+        	        if(location!=null)
+        	        {
+        	                onLocationChanged(location);
+        	        }
+        	
+        	       locationManager.requestLocationUpdates(provider, 20000, 0, this);
+         			
+            // Check if we were successful in obtaining the map.
+        	      
+
+            if (mMap != null)
+            {
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
+                {
+                    @Override
+                    public boolean onMarkerClick(com.google.android.gms.maps.model.Marker marker)
+                    {
+                        marker.showInfoWindow();
+                        
+                        return true;
+                    }
+                });
+            }
+            else
+                Toast.makeText(getApplicationContext(), "Unable to create Maps", Toast.LENGTH_SHORT).show();
+        }
+    }
+public void onLocationChanged(Location location) {
+		
+		TextView tvLocation = (TextView) findViewById(R.id.tv_location);
+		
+		// Getting latitude of the current location
+		double latitude = location.getLatitude();
+		
+		// Getting longitude of the current location
+		double longitude = location.getLongitude();		
+		
+		// Creating a LatLng object for the current location
+		LatLng latLng = new LatLng(latitude, longitude);
+		
+		// Showing the current location in Google Map
+		mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+		
+		// Zoom in the Google Map
+		mMap.animateCamera(CameraUpdateFactory.zoomTo(15));		
+		
+		
+		// Setting latitude and longitude in the TextView tv_location
+		tvLocation.setText("Latitude:" +  latitude  + ", Longitude:"+ longitude );		
+				
+	}
+
+
+
+    public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter
+    {
+        public MarkerInfoWindowAdapter()
+        {
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker)
+        {
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker)
+        {
+            View v  = getLayoutInflater().inflate(R.layout.infowindow_layout, null);
+
+            MyMarker myMarker = mMarkersHashMap.get(marker);
+
+            ImageView markerIcon = (ImageView) v.findViewById(R.id.marker_icon);
+
+            TextView markerLabel = (TextView)v.findViewById(R.id.marker_label);
+
+            TextView anotherLabel = (TextView)v.findViewById(R.id.another_label);
+
+            markerIcon.setImageResource(manageMarkerIcon(myMarker.getmIcon()));
+
+            markerLabel.setText(myMarker.getmLabel());
+            anotherLabel.setText("");
+
+            return v;
+        }
+    }
+
+
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
+}
