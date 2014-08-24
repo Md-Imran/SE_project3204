@@ -1,0 +1,21 @@
+protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        // Initialize the HashMap for Markers and MyMarker object
+        mMarkersHashMap = new HashMap<Marker, MyMarker>();
+        
+        
+        // Same with before one
+        mMyMarkersArray.add(new MyMarker("Lab Aid,khulna"+"\nAddress:"+"\n 32 Samsur Rahman Road"+"\n Contact:01711668691", "images", Double.parseDouble("22.81223333333333"), Double.parseDouble("89.56207666666666")));
+        mMyMarkersArray.add(new MyMarker("Badsha Mia Clinic and Diagonistic Center,khulna"+"\nAddress:"+"\n 1 No. Forazipara Road", "images", Double.parseDouble("22.81296166666667"), Double.parseDouble("89.56101500000001")));
+        //Same As before one
+        mMyMarkersArray.add(new MyMarker("Modern Diagonistic Center,khulna"+"\nAddress:"+"\n 45 Khan Jahan Ali Road"+"\n Contact:01716149804", "images", Double.parseDouble("22.81223333333333"), Double.parseDouble("89.56207666666666")));
+        mMyMarkersArray.add(new MyMarker("Porijat Clinic,khulna"+"\nAddress:"+"\n 9 Farajipara Road", "images", Double.parseDouble("22.81250166666667"), Double.parseDouble("89.55916666666666")));
+        mMyMarkersArray.add(new MyMarker("Rezoan Clinic Clinic and Diagonistic Center,khulna"+"\nAddress:"+"\n Moilapota More"+"\n Contact:01711170200", "images", Double.parseDouble("22.812613333333335"), Double.parseDouble("89.557215")));
+         
+        
+        setUpMap();
+        plotMarkers(mMyMarkersArray);
+    }
