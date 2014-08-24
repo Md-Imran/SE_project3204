@@ -1,0 +1,50 @@
+mMyMarkersArray.add(new MyMarker("Sheba Clinic"+"\nAddress:"+"\n sher e Bangla Road amtola,khulna "+"\n Contact:", "images", Double.parseDouble("22.809321666666666"), Double.parseDouble("89.55633333333331")));
+
+mMyMarkersArray.add(new MyMarker("Doctors clinic"+"\nAddress:"+"\n 107, sher eBangla road nirala, khulna"+"\n Contact:", "images", Double.parseDouble("22.803208333333334"), Double.parseDouble("89.55501833333334")));
+
+mMyMarkersArray.add(new MyMarker("Kamal Hospital"+"\nAddress:"+"\n Gollamari bus-stand"+"\n Contact:0171796569", "images", Double.parseDouble("22.800898333333333"), Double.parseDouble("89.54171333333333")));
+
+mMyMarkersArray.add(new MyMarker("Risa Clinic and Diagnostic center"+"\nAddress:"+"\n Gollamari,khulna"+"\n Contact:01711009967", "images", Double.parseDouble("22.80069"), Double.parseDouble("89.54061166666666")));
+
+mMyMarkersArray.add(new MyMarker("Idal Narsing Home"+"\nAddress:"+"\n 126,am a bari road,khulna"+"\n Contact:01711830942", "images", Double.parseDouble("22.80275166666667"), Double.parseDouble("89.54095666666666")));
+
+mMyMarkersArray.add(new MyMarker("Johora Memorial Hospital"+"\nAddress:"+"\n 80,outer bypass road,sonadanga"+"\n Contact:01918047383", "images", Double.parseDouble("22.824453333333334"), Double.parseDouble("89.53974833333332")));
+
+mMyMarkersArray.add(new MyMarker("Khulna skin care center "+"\nAddress:"+"\n 82,outer bypass road"+"\n Contact:01918047383", "images", Double.parseDouble("22.824453333333123"), Double.parseDouble("89.53974833333345")));
+
+mMyMarkersArray.add(new MyMarker("Specialize Hospital"+"\nAddress:"+"\n 62,soyod ali hossen road,sonadanga"+"\n Contact:", "images", Double.parseDouble("22.825361666666662"), Double.parseDouble("89.53966833333334")));
+
+mMyMarkersArray.add(new MyMarker("Bissas Investigation center and clinic"+"\nAddress:"+"\n mujgunni main road"+"\n Contact:041812833", "images", Double.parseDouble("22.826990000000002"), Double.parseDouble("89.53889499999998")));
+
+mMyMarkersArray.add(new MyMarker("Clasic Narsing Home"+"\nAddress:"+"\n coto boyra doctor para ,khulna"+"\n Contact:", "images", Double.parseDouble("22.839268333333333"), Double.parseDouble("89.53663666666668")));
+
+mMyMarkersArray.add(new MyMarker("Khulna Medical college Hospital"+"\nAddress:"+"\n khulna"+"\n Contact:", "images", Double.parseDouble("22.827508333333338"), Double.parseDouble("89.53683500000001")));
+
+mMyMarkersArray.add(new MyMarker("Khulna Helth Gurden Hospital"+"\nAddress:"+"\n Khulna Mediacal college road"+"\n Contact:", "images", Double.parseDouble("22.827503333333333"), Double.parseDouble("89.53658833333333")));
+
+mMyMarkersArray.add(new MyMarker("Boyra Central Diagnostic "+"\nAddress:"+"\n 138,outer bypass road"+"\n Contact:01731366526", "images", Double.parseDouble("22.828598333333336"), Double.parseDouble("89.53441999999998")));
+
+mMyMarkersArray.add(new MyMarker("Boyra Clinic"+"\nAddress:"+"\n 58,jolil soroni,boyra"+"\n Contact:041760704", "images", Double.parseDouble("22.835643333333337"), Double.parseDouble("89.53116666666668")));
+
+mMyMarkersArray.add(new MyMarker("Shohid Shekh Abu Naser Hospital"+"\nAddress:"+"\n goalkhali,khulna"+"\n Contact:", "images", Double.parseDouble("22.852116666666667"), Double.parseDouble("89.52981333333334")));
+
+mMyMarkersArray.add(new MyMarker("New Fair Helth And Diagnostic Center"+"\nAddress:"+"\n 11 khalispur,goalkhali"+"\n Contact:", "images", Double.parseDouble("22.85197833333333"), Double.parseDouble("89.53798666666668")));
+
+mMyMarkersArray.add(new MyMarker("Kalispur Clinic"+"\nAddress:"+"\n kalispur housing state road"+"\n Contact:", "images", Double.parseDouble("22.846715000000003"), Double.parseDouble("89.54037333333332")));
+
+mMyMarkersArray.add(new MyMarker("Popular General Hospital"+"\nAddress:"+"\n Bi –I- dc road"+"\n Contact:01716241287", "images", Double.parseDouble("22.851234999999996"), Double.parseDouble("89.54515833333335")));
+
+mMyMarkersArray.add(new MyMarker("Ad Din Akij Hospital"+"\nAddress:"+"\n Boykali,khulna"+"\n Contact:", "images", Double.parseDouble("22.841166666666663"), Double.parseDouble("89.53946666666667")));
+
+mMyMarkersArray.add(new MyMarker("Nogor Sastro kendro"+"\nAddress:"+"\n KDA Approce road"+"\n Contact:", "images", Double.parseDouble("22.823426666666666"), Double.parseDouble("89.55020666666665")));
+
+mMyMarkersArray.add(new MyMarker("Fatema Helth and Care "+"\nAddress:"+"\n 5/1 KDA approce road"+"\n Contact:0", "images", Double.parseDouble("22.823426666666678"), Double.parseDouble("89.5502066666669")));
+
+mMyMarkersArray.add(new MyMarker("Meristops Clinic"+"\nAddress:"+"\n nadia vila b-12 mojid soroni road"+"\n Contact:931990", "images", Double.parseDouble("22.8198"), Double.parseDouble("89.54901333333333")));
+
+mMyMarkersArray.add(new MyMarker("Sargical Clinic"+"\nAddress:"+"\n 19-21 mojid soroni sonadanga,khulna"+"\n Contact:01714086829", "images", Double.parseDouble("22.817933333333333"), Double.parseDouble("89.54549999999999")));
+
+mMyMarkersArray.add(new MyMarker("AF P Ab Clinic"+"\nAddress:"+"\n road no-2,hous-115,sonadanga"+"\n Contact:041723873", "images", Double.parseDouble("22.81970666666667"), Double.parseDouble("89.54594833333334")));
+
+mMyMarkersArray.add(new MyMarker("Fatema Rahman Canser Clinic"+"\nAddress:"+"\n 1 no sonadanga"+"\n Contact:01710941199", "images", Double.parseDouble("22.82033666666667"), Double.parseDouble("89.54690000000001")));
+
