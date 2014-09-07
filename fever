@@ -1,0 +1,18 @@
+package com.example.cureall;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class fever extends Activity {
+	public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fever_view);
+        TextView  tv1= (TextView)findViewById(R.id.feverview);
+        tv1.setText("\n\n     জ্বর             প্রস্তুতকারক      প্রতি পাতা\n\n  নাপা এক্সট্রা     বিক্সিমকো      ২৫ টাকা\n  পারাসিটামল     গ্লাস্কো           ২৫ টাকা\n  আইস প্লাসস     স্কয়ার            ২৫ টাকা\n  ফাস্ট প্লাস        একমি             ২৫ টাকা\n  রিসেট প্লাস      ইন্সেপটা         ২০ টাকা");
+        tv1.setTextSize(20);
+        tv1.setTextColor(Color.BLACK);
+
+}
+}
