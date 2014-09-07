@@ -1,0 +1,146 @@
+package com.example.cureall;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+
+public class GridViewExampleActivity extends Activity {
+    /** Called when the activity is first created. */
+	
+	private GridviewAdapter mAdapter;
+	private ArrayList<String> listCountry;
+	private ArrayList<Integer> listFlag;
+	
+	private GridView gridView;
+	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        prepareList();
+        
+        // prepared arraylist and passed it to the Adapter class
+        mAdapter = new GridviewAdapter(this,listCountry, listFlag);
+        
+        // Set custom adapter to gridview
+        gridView = (GridView) findViewById(R.id.gridView1);
+        gridView.setAdapter(mAdapter);
+        
+        // Implement On Item click listener
+        gridView.setOnItemClickListener(new OnItemClickListener() 
+        {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View arg1, int position,
+					long arg3) {
+				
+			//	 Log.d("Clicked item id", " "+ arg3);
+				 if(position==0)
+				 {
+					 Intent in=new Intent(GridViewExampleActivity.this,fever.class);
+			      	  startActivity(in);
+				 }
+				if(position==1)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,allergy.class);
+			      	  startActivity(in);
+				}
+				if(position==2)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,vomit.class);
+			      	  startActivity(in);
+				}
+				if(position==3)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,cough.class);
+			      	  startActivity(in);
+				}
+				if(position==4)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,dysentery.class);
+			      	  startActivity(in);
+				}
+				if(position==5)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,gastric.class);
+			      	  startActivity(in);
+				}
+				if(position==6)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,wound.class);
+			      	  startActivity(in);
+				}
+				if(position==7)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,pain.class);
+			      	  startActivity(in);
+				}
+				if(position==8)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,nose.class);
+			      	  startActivity(in);
+				}
+				if(position==9)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,mouthwash.class);
+			      	  startActivity(in);
+				}
+				if(position==10)
+				{
+					Intent in=new Intent(GridViewExampleActivity.this,teethwash.class);
+			      	  startActivity(in);
+				}
+				
+				
+				
+				
+				
+				Toast.makeText(GridViewExampleActivity.this, mAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+			}
+		});
+        
+        
+     
+    }
+    
+    public void prepareList()
+    {
+    	  listCountry = new ArrayList<String>();
+    	  
+    	  listCountry.add("জ্বর");
+    	  listCountry.add("অ্যালার্জি");
+          listCountry.add("বমি");
+          listCountry.add("কাশি");
+          listCountry.add("ডায়রিয়া");
+          listCountry.add("গ্যাস");
+          listCountry.add("কাটাছেড়া");
+          listCountry.add("ব্যাথা");
+          listCountry.add("নাক");
+          listCountry.add("গালে-ঘাঁ");
+          listCountry.add("দাঁত পরিষ্কার ");  
+         
+          
+          listFlag = new ArrayList<Integer>();
+          listFlag.add(R.drawable.fever);
+          listFlag.add(R.drawable.allergyicon);
+          listFlag.add(R.drawable.allergyicon);
+          listFlag.add(R.drawable.coughicon);
+          listFlag.add(R.drawable.france);
+          listFlag.add(R.drawable.germany);
+          listFlag.add(R.drawable.iran);
+          listFlag.add(R.drawable.italy);
+          listFlag.add(R.drawable.japan);
+          listFlag.add(R.drawable.korea);
+          listFlag.add(R.drawable.mexico);
+         
+    }
+   
+}
