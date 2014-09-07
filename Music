@@ -1,0 +1,24 @@
+
+		final	 Button two = (Button)this.findViewById(R.id.btnsound);
+        final MediaPlayer mp2 = MediaPlayer.create(this, R.raw.jingle);
+        mp2.setLooping(true);
+        mp2.start();
+        two.setOnClickListener(
+
+	      		new View.OnClickListener()
+
+	      		{
+
+	                      public void onClick(View aView)
+	                      {
+	                    	// If the music is playing
+	                         if(mp2.isPlaying() == true)
+	                             // Pause the music player
+	                             mp2.pause();
+	                         // If it's not playing
+	                         else
+	                             // Resume the music player
+	                             mp2.start();
+	                      }
+	      		}
+	      		);
