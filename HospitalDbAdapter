@@ -1,0 +1,190 @@
+package com.example.cureall;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+public class HospitalDbAdapter{
+	public static final String KEY_ROWID = "_id";
+	 public static final String KEY_CODE = "code";
+	 public static final String KEY_NAME = "name";
+	 public static final String KEY_PRICE = "continent";
+	 public static final String KEY_MANUFACTURE = "region";
+	 
+	 private static final String TAG = "MedicinesDbAdapter";
+	
+	 private DatabaseHelper mDbHelper;
+	 private SQLiteDatabase mDb;
+	 
+	 private static final String DATABASE_NAME = "Medicine";
+	 private static final String SQLITE_TABLE = "MedicineTable";
+	 private static final int DATABASE_VERSION = 1;
+	 
+	 private final Context mCtx;
+	 
+	 private static final String DATABASE_CREATE =
+	  "CREATE TABLE if not exists " + SQLITE_TABLE + " (" +
+	  KEY_ROWID + " integer PRIMARY KEY autoincrement," +
+	  KEY_CODE + "," +
+	  KEY_NAME + "," +
+	  KEY_PRICE + "," +
+	  KEY_MANUFACTURE + "," +
+	  " UNIQUE (" + KEY_CODE +"));";
+	 
+	 private static class DatabaseHelper extends SQLiteOpenHelper {
+	 
+	  DatabaseHelper(Context context) {
+	   super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	  }
+	 
+	 
+	  @Override
+	  public void onCreate(SQLiteDatabase db) {
+	   Log.w(TAG, DATABASE_CREATE);
+	   db.execSQL(DATABASE_CREATE);
+	  }
+	 
+	  @Override
+	  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	   Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
+	     + newVersion + ", which will destroy all old data");
+	   db.execSQL("DROP TABLE IF EXISTS " + SQLITE_TABLE);
+	   onCreate(db);
+	  }
+	 }
+	 
+	 public HospitalDbAdapter(Context ctx) {
+	  this.mCtx = ctx;
+	 }
+	 
+	 public HospitalDbAdapter open() throws SQLException {
+	  mDbHelper = new DatabaseHelper(mCtx);
+	  mDb = mDbHelper.getWritableDatabase();
+	  return this;
+	 }
+	 
+	 public void close() {
+	  if (mDbHelper != null) {
+	   mDbHelper.close();
+	  }
+	 }
+	 
+	 public long createMedicine(String code, String name,
+	   String Medicine, String region) {
+	 
+	  ContentValues initialValues = new ContentValues();
+	  initialValues.put(KEY_CODE, code);
+	  initialValues.put(KEY_NAME, name);
+	  initialValues.put(KEY_PRICE, Medicine);
+	  initialValues.put(KEY_MANUFACTURE, region);
+	 
+	  return mDb.insert(SQLITE_TABLE, null, initialValues);
+	 }
+	 
+	 public boolean deleteAllCountries() {
+	 
+	  int doneDelete = 0;
+	  doneDelete = mDb.delete(SQLITE_TABLE, null , null);
+	  Log.w(TAG, Integer.toString(doneDelete));
+	  return doneDelete > 0;
+	 
+	 }
+	 
+	 public Cursor fetchCountriesByName(String inputText) throws SQLException {
+	  Log.w(TAG, inputText);
+	  Cursor mCursor = null;
+	  if (inputText == null  ||  inputText.length () == 0)  {
+	   mCursor = mDb.query(SQLITE_TABLE, new String[] {KEY_ROWID,
+	     KEY_CODE, KEY_NAME, KEY_PRICE, KEY_MANUFACTURE},
+	     null, null, null, null, null);
+	 
+	  }
+	  else {
+	   mCursor = mDb.query(true, SQLITE_TABLE, new String[] {KEY_ROWID,
+	     KEY_CODE, KEY_NAME, KEY_PRICE, KEY_MANUFACTURE},
+	     KEY_NAME + " like '%" + inputText + "%'", null,
+	     null, null, null, null);
+	  }
+	  if (mCursor != null) {
+	   mCursor.moveToFirst();
+	  }
+	  return mCursor;
+	 
+	 }
+	 
+	 public Cursor fetchAllCountries() {
+	 
+	  Cursor mCursor = mDb.query(SQLITE_TABLE, new String[] {KEY_ROWID,
+	    KEY_CODE, KEY_NAME, KEY_PRICE, KEY_MANUFACTURE},
+	    null, null, null, null, null);
+	 
+	  if (mCursor != null) {
+	   mCursor.moveToFirst();
+	  }
+	  return mCursor;
+	 }
+	 
+	 public void insertSomeCountries() {
+	 
+		//medical college//
+		  createMedicine("০০০১","মেডিকেল কলেজ","খুলনা মেডিকেল কলেজ","ছোটবয়রা");
+		  createMedicine("০০০২","মেডিকেল কলেজ","গাজিমেডিকেল কলেজ","সোনাডাঙ্গা");
+		  createMedicine("০০০৩","মেডিকেল কলেজ","আদ-দ্দিন মেডিকেল কলেজ","বয়রা");
+		  
+
+		  //hospital//
+		  createMedicine("০০০৪","হাসপাতাল","গরিব নেওাজ,খুলনা","কে ডি এ এভিনিউ");
+		  createMedicine("০০০৫","হাসপাতাল","প্রিন্স হাস্পাতাল,খুলনা","কে ডি এ এভিনিউ,রয়াল মোড়");
+		  createMedicine("০০০৬","হাসপাতাল","এস,এইচ এম সি হাসপাতাল,খুলনা","৯৯ সাউথ সেন্ট্রাল রোড");
+		  createMedicine("০০০৭","হাসপাতাল","নার্গিস মেমোরিয়াল হাস্পাতাল","৮৯ সাউথ সেন্ট্রাল রোড");
+		  createMedicine("০০০৮","হাসপাতাল","ডি এ পি এস হাসপাতাল","১০৪/১ খান জাহান আলি রোড ");
+		  createMedicine("০০০৯","হাসপাতাল","মাদক মুক্ত নিরাময় কেন্দ্র","৬১/১ রূপসা স্ট্যান্ড রোড");
+		  createMedicine("০০০১০","হাসপাতাল","কামাল হাসপাতাল","গল্লামারি বাস স্ট্যান্ড");
+		  createMedicine("০০০১১","হাসপাতাল","জোহরা মেমোরিয়াল হাসপাতাল","৮০,আউটার বাইপাস রোড,সোনাডাঙ্গা");
+		  createMedicine("০০০১২","হাসপাতাল","খুলনা স্কিন কেয়ার সেন্টার","৮২,আউটার বাইপাস রোড");
+		  createMedicine("০০০১৩","হাসপাতাল","স্পেসালাইজ হাসপাতাল","৬২, সৈয়দ আলি হসেন রোড,সোনাডাঙ্গা");
+		  createMedicine("০০০১৪","হাসপাতাল","শহিদ শেখ আবু নাসের হাসপাতাল","গোয়ালখালি,খুলনা");
+		  createMedicine("০০০১৫","হাসপাতাল","পপুলার জেনারেল হাসপাতাল","বি-আই-ডিসি রোড");
+		  
+		  createMedicine("০০১৬","হাসপাতাল","নগরসাস্থকেন্দ্র","কেডিএ এপ্রোস রোড");
+		  createMedicine("০০০১৭","হাসপাতাল","খুলনা শিশু হাস্পাতাল,খুলনা","৪নং 4 রতন শাহ্ সরণি");
+		  createMedicine("০০০১৮","হাসপাতাল","খুলনা সদর হস্পাতাল,খুলনা","জেলখানাঘাট");
+		  createMedicine("০০০১৯","হাসপাতাল","খুলনা হেলথ গার্ডেন হাসপাতাল ","খুলনা মেডিকেল কলেজ রোড");
+
+		  //clinic//
+
+		  createMedicine("০০০২০","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","মহানগর ডাইগোনিস্টিক সেন্টার","১১ হাজী মহসিন রোড");
+		  createMedicine("০০০২১","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","সেবা ক্লিনিক","শের এ বাংলা রোড আমতলা");
+		  createMedicine("০০০২২","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","ডক্টরস ক্লিনিক","শের এ বাংলা রোড নিরালা");
+		  createMedicine("০০০২৩","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","খুলনা ক্লিনিক","খান জাহান আলি রোড");
+		  createMedicine("০০০২৪","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","মেডিকেয়ার ডাইগোনিস্টিক সেন্টের ","খান জাহান আলি রোড");
+		  createMedicine("০০০২৫","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","লাজ ক্লিনিক এবং হেলথ কেয়ার","২৯/১ এ");
+		  createMedicine("০০০২৬","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","গুড হেলথ ক্লিনিক","২৬৮ খান জাহান আলি রোড");
+		  createMedicine("০০০২৭","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","মিম নার্সিং হোম","১০৪/১ খান জাহান আলি রোড");
+		  createMedicine("০০০২৮","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","ইনসাফ নার্সিং হোম","৮৯/৩ রূপসা স্ট্রান্ড রোড");
+		  createMedicine("০০০২৯","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","সূর্যের হাসি ক্লিনিক","৮৯ সাউথ সেন্ট্রাল রোড ");
+		  createMedicine("০০০৩০","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","মহানগর ডাইগোনিস্টিক সেন্টার ","১১ হাজী মহসিন রোড");
+		  createMedicine("০০০৩১","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","ডক্টরস ক্লিনিক","শের এ বাংলা রোড নিরালা আমতলা");
+		  createMedicine("০০০৩২","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","রাইসা ক্লিনিক ","গল্লামারি,খুলনা");
+		  createMedicine("০০০৩৩","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","আইডিয়াল নার্সিং হোম","শের এ বাংলা রোড আমতলা");
+		  createMedicine("০০০৩৪","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","বিশ্বাস ইনভেস্টিগেশন সেন্টার ","মুজগুনি মেইন রোড");
+		  createMedicine("০০০৩৫","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","ক্লাসিক নার্সিং হোম","ছোটবয়রা ডক্টর পাড়া");
+		  createMedicine("০০০৩৬","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","বয়রা সেন্ট্রাল ডাইগোনিস্টিক","১৩৮,আউটার বাইপাস রোড");
+		  createMedicine("০০০৩৭","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","বয়রা ক্লিকিন","৫৮,জলিল সরনি,বয়রা");
+		  createMedicine("০০০৩৮","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","নিউ ফেয়ার হেলথ  সেন্টার","১১খালিশপুর,গোয়ালখালি");
+		  createMedicine("০০০৩৯","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","খালিশপুর ক্লিনিক","খালিশপুর হাউসিং স্টেট রোড");
+		  createMedicine("০০০৪০","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","ফাতেমা এবং কেয়ার","৫/১ কেডিএ এপ্রোস রোড");
+		  createMedicine("০০০৪১","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","মেরিস্টপ্স ক্লিনিক","নাদিয়াভিলা বি-১২ মজিদ সরণি রোড");
+		  createMedicine("০০০৪২","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","সারজিক্যাল ক্লিনিক","মজিদ সরণি সোনাডাঙ্গা,খুলনা");
+		  createMedicine("০০০৪৩","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","এফ পি এবি ক্লিনিক","রোড নং-২,হাউস-১১৫, সোনাডাঙ্গা");
+		  createMedicine("০০০৪৪","ডাইগোনিস্টিক সেন্টার এবং ক্লিনিক","ফাতেমা রাহমান সেন্টার ","১নং সোনাডাঙ্গা");
+
+
+	  
+	  
+	  
+	 }
+}
